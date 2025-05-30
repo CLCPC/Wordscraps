@@ -1,5 +1,6 @@
 body {
-  background-color: rgb(161, 106, 161);
+  background-color: #ecf2f9; /* lightest clcpc background */
+  color: #003d6a;            /* primary dark blue text */
   justify-content: space-evenly;
   overflow: hidden;
 }
@@ -14,8 +15,9 @@ body {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   height: 94vh;
+  color: #003d6a; /* ensure text shows up on light bg */
 }
 
 .location2 {
@@ -24,11 +26,13 @@ body {
 
 .board {
   margin-top: 5px;
-  background-color: rgb(161, 106, 161);
+  background-color: #3472a4; /* clcpc deep blue */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 61, 106, 0.3); /* subtle shadow for depth */
 }
 
 .grid-row {
@@ -38,10 +42,10 @@ body {
 }
 
 .square {
-  transition: all .2s ease-in;
+  transition: all 0.2s ease-in;
   margin: 1px;
-  background-color: rgb(161, 106, 161);
-  border: 1px solid rgb(161, 106, 161);
+  background-color: #6da7c1; /* muted blue from logo tones */
+  border: 1px solid #6da7c1;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -55,42 +59,46 @@ body {
 }
 
 .letter {
-  border: 1px solid blueviolet;
+  border: 1px solid #134b71; /* dark blue from logo */
   border-radius: 3px;
-  background-color: #90DBDC;
+  background-color: #c6e7ef; /* light ice blue for contrast */
 }
 
 .square-reveal {
-  background-color: rgb(0, 184, 184);
+  background-color: #2ca0a0; /* teal-toned reveal */
   color: white;
 }
 
 .square-correct {
-  color: blueviolet;
-  background-color: rgb(169, 254, 255);
+  color: #134b71; /* deep blue for contrast */
+  background-color: #d9f8f9; /* soft aqua */
 }
 
 @media only screen and (max-width: 400px) {
   .square {
-    font-size: 10vw;
+    font-size: 9vw; /* slightly reduced for spacing on tiny screens */
   }
 }
 
 @media only screen and (min-width: 401px) {
   .square {
-    font-size: 30px;
+    font-size: 28px; /* harmonize with layout spacing */
   }
 }
-
 
 .container, .status {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* centered vertically too */
+  margin-top: 10px;
+  gap: 10px; /* add spacing between elements */
 }
 
 .info {
   display: flex;
+  flex-wrap: wrap; /* allows better layout on small screens */
+  gap: 8px; /* optional spacing between info blocks */
 }
 
 .user-actions {
@@ -100,46 +108,50 @@ body {
   padding-bottom: 20px;
 }
 
+/* shared styles for all action indicators */
 .current-word, .points, .time, .backspace {
   transition: all .2s ease-in;
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 50px;
   min-width: 235px;
-  font-size: 50px;
+  font-size: 48px;
   margin: 5px;
   border-radius: 5px;
-  background-color: plum;
+  background-color: #90DBDC; /* soft blue from CLCPC logo */
+  color: #072A40; /* dark navy text */
   padding: 5px;
+  font-weight: 600;
+  border: 2px solid #429EBD; /* matching border for depth */
 }
 
 .correct {
-  color: cyan;
-  background-color: rgb(177, 68, 123);
+  color: #ffffff;
+  background-color: #3C9D3C; /* grounded green */
+  border: 2px solid #2c7b2c;
 }
 
 .incorrect, .warning {
-  color: white;
-  background-color: rgb(255, 60, 0);
+  color: #ffffff;
+  background-color: #93303B; /* deep maroon, respectful warning */
+  border: 2px solid #761f2b;
 }
 
 .used {
-  animation: shake 0.5s; 
-  animation-iteration-count: infinite; 
+  animation: pulse-shake 0.4s ease-in-out;
+  animation-iteration-count: 1;
+  background-color: #D8EFFE; /* soft blue highlight */
+  border: 2px solid #429EBD;
+  color: #072A40;
 }
 
-@keyframes shake {
-  0% { transform: translate(1px, 0px) ; }
-  10% { transform: translate(-1px, 0px); }
-  20% { transform: translate(-3px, 0px); }
-  30% { transform: translate(3px, 0px); }
-  40% { transform: translate(1px, 0px); }
-  50% { transform: translate(-1px, 0px); }
-  60% { transform: translate(-3px, 0px); }
-  70% { transform: translate(3px, 0px)}
-  80% { transform: translate(-1px, 0px); }
-  90% { transform: translate(1px, 0px); }
-  100% { transform: translate(1px, 0px); }
+@keyframes pulse-shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
 }
 
 .pool {
@@ -149,12 +161,13 @@ body {
   max-width: 300px;
   min-height: 235px;
   min-width: 235px;
-  background-color: plum;
+  background-color: #D8EFFE; /* soft CLCPC blue */
   border-radius: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-top: 10px;
+  border: 2px solid #429EBD; /* navy-blue outer ring */
 }
 
 .pool-row {
@@ -164,22 +177,23 @@ body {
 }
 
 .pool-letter {
-  transition: all .2s ease-in;
-  margin: 5px 5px 5px 5px;
+  transition: all 0.2s ease-in;
+  margin: 5px;
   width: calc((100vw - 27px) / 7);
   height: calc((100vw - 27px) / 7);
-  /* max-width: 95px;
-  max-height: 95px; */
   max-height: 70px;
   max-width: 70px;
   min-width: 55px;
   min-height: 55px;
-  background-color: pink;
+  background-color: #A9CCE3; /* lighter interior blue */
+  border: 2px solid #145374; /* bold navy border */
   border-radius: 50%;
   display: flex;
   align-items: center;
-  font-size: 50px;
   justify-content: center;
+  font-size: 50px;
+  font-family: 'Noto Sans', sans-serif;
+  color: #072A40; /* dark blue text */
   cursor: pointer;
 }
 
@@ -189,29 +203,29 @@ body {
 }
 
 .selected {
-  background: purple;
-  color: white;
+  background: #145374; /* selected state */
+  color: #ffffff;
   cursor: default;
 }
 
 .pool-button {
-  transition: all .2s ease-in;
-  margin: 20px 0px 0px 0px;
+  transition: all 0.2s ease-in;
+  margin-top: 20px;
   display: inline-block;
   width: 200px;
   height: 60px;
   font-size: 30px;
-  /* font-size: 50px; */
-  font-weight: 400;
+  font-weight: 500;
   text-align: center;
   border: none;
-  color: #fff;
-  background-color: hotpink;
+  color: #ffffff;
+  background-color: #457B9D; /* button color */
+  border-radius: 8px;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 .clicked {
-  transition: all .2s ease-in;
-  background-color: rgb(177, 68, 123);
+  background-color: #2E4A62; /* clicked/disabled state */
   cursor: default;
 }
 
@@ -231,32 +245,33 @@ body {
 
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 .topnav {
   overflow: hidden;
-  background-color: #a65da4;
+  background-color: #145374; /* CLCPC dark navy */
 }
 
 .topnav a:hover {
-  background-color: rgb(0, 184, 184) !important;
+  background-color: #00b8b8 !important; /* hover teal */
   color: white;
 }
 
 .topnav a {
   float: left;
   display: block;
-  color: black;
-  background-color: #dea4dd;
+  color: white;
+  background-color: #429EBD; /* mid CLCPC blue */
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 a.active {
-  background-color: rgb(0, 184, 184) ;
+  background-color: #00b8b8;
   color: white;
 }
 
@@ -286,6 +301,7 @@ a.active {
   }
 }
 
+/* Highscore table styling */
 #highscore table {
   display: flex;
   flex-direction: column;
@@ -295,14 +311,13 @@ a.active {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 5px 5px 5px 5px;
-}
+  padding: 5px;
 
 #highscore.modal,
 #game-over-form.modal,
 #help.modal,
 #intro.modal {
-  background-color:  rgb(161, 106, 161);
+  background-color: #A9CCE3; /* soft blue modal */
 }
 
 #help div,
@@ -321,6 +336,7 @@ a.active {
 #intro li {
   font-size: 18px;
   padding-bottom: 10px;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 #intro strong {
@@ -335,6 +351,7 @@ a.active {
   font-size: 50px !important;
   align-self: center;
   margin-bottom: 15px;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 
@@ -344,7 +361,7 @@ a.active {
 #intro div {
   display: flex;
   flex-direction: column;
-  background-color: #dea4dd;
+  background-color: #D8EFFE; /* light blue box */
   padding: 30px;
   border-radius: 10px;
 }
@@ -358,6 +375,7 @@ a.active {
   font-size: 30px;
   align-items: center;
   margin-top: 10px;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 #game-over-form .score {
@@ -387,17 +405,23 @@ a section.link p {
     margin-top: 15px;
   }
 
-  .time, .points {
+   .time, .points {
     margin-top: 0px;
     height: 25px;
     min-width: 100px;
     font-size: 25px;
+    font-family: 'Noto Sans', sans-serif;
+    background-color: #A9CCE3;
+    color: #072A40;
   }
 
   .current-word, .backspace {
     height: 35px;
     min-width: 150px;
     font-size: 35px;
+    font-family: 'Noto Sans', sans-serif;
+    background-color: #D8EFFE;
+    color: #072A40;
   }
 
   .current-word {
@@ -408,17 +432,28 @@ a section.link p {
     width: 200px;
     height: 60px;
     font-size: 30px;
+    font-family: 'Noto Sans', sans-serif;
+    background-color: #457B9D;
+    border-radius: 8px;
+    color: white;
   }
 
-  .square {
+   .square {
     width: 3vh;
     height: 3vh;
     font-size: 2.5vh;
+    font-family: 'Noto Sans', sans-serif;
+    background-color: #A9CCE3;
+    color: #072A40;
   }
 
   .pool-letter {
     width: 8vh !important;
     height: 8vh !important;
+    font-family: 'Noto Sans', sans-serif;
+    background-color: #A9CCE3;
+    color: #072A40;
+    border: 2px solid #145374;
   }
 
   .p1.pool-row {
@@ -440,9 +475,11 @@ a section.link p {
     min-height: 200px;
     height: calc((44vh - 27px) / 1.5);
     width: calc((44vh - 27px) / 1.5);
+    background-color: #D8EFFE;
+    border: 2px solid #429EBD;
   }
 
-  .pool-letter {
+   .pool-letter {
     min-height: 40px;
     min-width: 40px;
     width: calc((44vw - 27px) / 7);
@@ -457,11 +494,13 @@ a section.link p {
   width: 100px;
   height: 40px;
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 500;
   text-align: center;
   border: none;
   color: #fff;
-  background-color: hotpink;
+  background-color: #457B9D;
+  font-family: 'Noto Sans', sans-serif;
+  border-radius: 5px;
   cursor: pointer;
 }
 
